@@ -15,7 +15,7 @@ def app():
         'TESTING': True,
     }
 
-    _app = create_app(settings_override=params)
+    _app = create_app(settings_override=params) #new app insance
 
     # Establish an application context before running the tests.
     ctx = _app.app_context()
