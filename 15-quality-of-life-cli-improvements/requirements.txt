@@ -19,6 +19,13 @@ werkzeug==0.14.1
 itsdangerous==1.1.0
 markupsafe==1.1.1
 
+# Hello. This is Nick from the future (March 2022 to be exact). A new addition
+# had to be made below to fix an issue with a recent release of Jinja 3.1. It's
+# breaking all sorts of libraries, so let's lock it to a stable 3.0.X version.
+#
+# Jinja 2 is the HTML templating library that Flask uses.
+jinja2==3.0.3
+
 # Application server for both development and production.
 gunicorn==19.4.5
 
@@ -56,6 +63,11 @@ Flask-SQLAlchemy==2.1
 # The line below isn't covered on video, but it locks SQLAlchemy to 1.2.0. A
 # future update video will cover upgrading SQLAlchemy to 1.3.0 and more.
 SQLAlchemy==1.2.0
+
+# Hello. This is Nick from the future (October 2022 to be exact). Celery
+# started to break because they didn't version lock this dependency and it was
+# recently updated to 5.X which had breaking changes. Let's stick with 4.X.
+importlib-metadata==4.13.0
 
 # Hello. This is Nick from the future (December 2019 to be exact). Since we
 # upgraded to Python 3.7.x, we also have to update Celery to 4.3.x since older

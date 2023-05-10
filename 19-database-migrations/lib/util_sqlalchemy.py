@@ -72,7 +72,11 @@ class ResourceMixin(object):
         # deleting every user instead of skipping the current_user.
         omit_ids = list(map(str, omit_ids))
 
-        if scope == 'all_search_results':
+        # Hello. This is Nick from the future (July 2022 to be exact). I added
+        # the query condition below to make this a bit more intuitive so that
+        # an empty search query won't delete everything. Prior to this an empty
+        # query would have been technically all of the results.
+        if query and scope == 'all_search_results':
             # Change the scope to go from selected ids to all search results.
             ids = cls.query.with_entities(cls.id).filter(cls.search(query))
 

@@ -111,10 +111,16 @@ def users_bulk_delete():
     form = BulkDeleteForm()
 
     if form.validate_on_submit():
+        # Hello. This is Nick from the future (July 2022 to be exact). I
+        # modified this behavior a bit by reading the query from a hidden form
+        # field instead of the request.args that was shown on video.
+        #
+        # We needed to make this a hidden field to persist the value when the
+        # form was submit since the GET args are not readable in this POST.
         ids = User.get_bulk_action_ids(request.form.get('scope'),
                                        request.form.getlist('bulk_ids'),
                                        omit_ids=[current_user.id],
-                                       query=request.args.get('q', ''))
+                                       query=request.form.get('q'))
 
         # Prevent circular imports.
         from snakeeyes.blueprints.billing.tasks import delete_users
@@ -201,9 +207,15 @@ def coupons_bulk_delete():
     form = BulkDeleteForm()
 
     if form.validate_on_submit():
+        # Hello. This is Nick from the future (July 2022 to be exact). I
+        # modified this behavior a bit by reading the query from a hidden form
+        # field instead of the request.args that was shown on video.
+        #
+        # We needed to make this a hidden field to persist the value when the
+        # form was submit since the GET args are not readable in this POST.
         ids = Coupon.get_bulk_action_ids(request.form.get('scope'),
                                          request.form.getlist('bulk_ids'),
-                                         query=request.args.get('q', ''))
+                                         query=request.form.get('q'))
 
         # Prevent circular imports.
         from snakeeyes.blueprints.billing.tasks import delete_coupons

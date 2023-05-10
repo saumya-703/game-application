@@ -5,6 +5,7 @@ from wtforms import (
   SelectField,
   StringField,
   BooleanField,
+  HiddenField,
   IntegerField,
   FloatField,
   DateTimeField
@@ -33,6 +34,15 @@ class BulkDeleteForm(Form):
         ('all_selected_items', 'All selected items'),
         ('all_search_results', 'All search results')
     ])
+
+    # Hello. This is Nick from the future (July 2022 to be exact). I modified
+    # things by adding this hidden form field to the admin users and coupons
+    # pages. This hidden field is now also included in both admin index pages
+    # that include the bulk delete form:
+    #
+    # It's on line 22 in the admin/user/index.html page and line 34 in the
+    # admin/coupon/index.html page. No inline comments were added there.
+    q = HiddenField('Search term', [Optional(), Length(1, 10)])
 
     scope = SelectField('Privileges', [DataRequired()],
                         choices=choices_from_dict(SCOPE, prepend_blank=False))

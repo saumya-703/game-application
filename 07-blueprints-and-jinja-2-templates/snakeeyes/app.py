@@ -1,6 +1,6 @@
 from flask import Flask
 
-from snakeeyes.blueprints.page import page
+from snakeeyes.blueprints.page import page 
 
 
 def create_app():
